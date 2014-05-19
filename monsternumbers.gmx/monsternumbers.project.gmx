@@ -11,12 +11,18 @@
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\pen_x.gml</script>
+    <script>scripts\pen_y.gml</script>
+  </scripts>
   <fonts name="fonts">
     <font>fonts\ftMain</font>
+    <font>fonts\ftBig</font>
   </fonts>
   <objects name="objects">
     <object>objects\objController</object>
     <object>objects\objMonster</object>
+    <object>objects\objFadeout</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmPlay</room>

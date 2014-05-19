@@ -3,11 +3,131 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>grass_color = make_color_rgb(155,233,116);
+play_pens = 2;
+
+level = 0;
+level_cleared = 0;
+
+event_perform(ev_other,ev_user0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///win condition
+var won = 1;
+for (var i=0; i&lt;play_pens;i+=1){
+    if goal[i]!=pen[i]{won = 0; break;}
+}
+
+if won and !level_cleared{
+    level_cleared = 1;
+    instance_create(0,0,objFadeout);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///start new level
+
+var num_mons = 3 + ceil(level/3) + floor(random(level/2.5)); //how many monsters?
+play_pens = min(4,2 + ceil(level/5));
+pen_width= ((room_width/2)/power(play_pens,1/3));
+pen_height = pen_width*room_height/room_width;
+
+var min_diff = ceil(num_mons/3); //at least a third of the monsters need to be misplaced
+
+for(var i=0;i&lt;play_pens;i+=1){
+    goal[i] = 0; //desired total for this pen
+    pen[i] = 0; //total in this pen
+}
+
+while(num_mons&gt;0){
+    var mon = instance_create(0,0,objMonster);
+    mon.my_number = ceil((5+floor(level/2))*power(random(1),max(1,7-(level)))); //at higher levels, higher number mons become more common
+    if level&gt;4{
+        if floor(random(3))==0{mon.my_number = -mon.my_number;}
+        }
+    var g=floor(random(play_pens));
+    goal[g] += mon.my_number;
+    
+    if random(num_mons)&lt;min_diff{ //some portion will be forced out of their desired spot
+        min_diff-=1;
+        do{mon.my_pen = floor(random(play_pens));}until(mon.my_pen!=g)
+    }else{ //the rest are randomly determined
+    mon.my_pen = floor(random(play_pens));
+    }
+    
+    pen[mon.my_pen] += mon.my_number;
+    
+    mon.x = pen_x(mon.my_pen)-(pen_width/2)+random(pen_width);
+    mon.y = pen_y(mon.my_pen)-(pen_height/2)+random(pen_height);
+    
+    num_mons-=1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,10 +145,56 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*
+            <string>var w = pen_width, h = pen_height;//, dist = room_width/sqrt(play_pens);
+
+for (var i=0;i&lt;play_pens;i+=1){
+    draw_set_color(grass_color);
+    draw_primitive_begin(pr_trianglestrip);
+    for(var j=0;j&lt;=24;j+=1){
+        draw_vertex_color(pen_x(i)+lengthdir_x(w/2,360*j/24),
+        pen_y(i)+lengthdir_y(h/2,360*j/24),grass_color,2/3);
+        draw_vertex_color(pen_x(i)+lengthdir_x(w/1.5,360*j/24),
+        pen_y(i)+lengthdir_y(h/1.5,360*j/24),grass_color,0);
+    }
+    draw_primitive_end();
+    
+    draw_ellipse(pen_x(i)-(w/2),
+        pen_y(i)-(h/2),
+        pen_x(i)+(w/2),
+        pen_y(i)+(h/2),false);
+        
+    draw_set_color(c_white);
+    draw_text_transformed(pen_x(i),
+        pen_y(i),string(goal[i]),h/128,h/160,0);
+}
+
+/*
 draw_sprite_ext(sprPaintbg,0,room_width/2,room_height/2,
     room_width/sprite_get_width(sprPaintbg)*1.5,room_height/sprite_get_height(sprPaintbg)*1.5,
     0,merge_color(c_blue,c_gray,.5),.1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="39">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>play_pens+=1;
 </string>
           </argument>
         </arguments>
