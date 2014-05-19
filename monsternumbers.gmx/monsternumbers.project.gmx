@@ -5,9 +5,22 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\sprMonster</sprite>
+    <sprite>sprites\sprPaintbg</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <fonts name="fonts">
+    <font>fonts\ftMain</font>
+  </fonts>
+  <objects name="objects">
+    <object>objects\objController</object>
+    <object>objects\objMonster</object>
+  </objects>
+  <rooms name="rooms">
+    <room>rooms\rmPlay</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
