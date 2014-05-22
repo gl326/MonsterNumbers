@@ -14,7 +14,7 @@
   <scripts name="scripts">
     <script>scripts\pen_x.gml</script>
     <script>scripts\pen_y.gml</script>
-    <script>scripts\option_init.gml</script>
+    <script>scripts\create_option.gml</script>
     <script>scripts\start_pressed.gml</script>
     <script>scripts\howto_pressed.gml</script>
     <script>scripts\quit_pressed.gml</script>
@@ -22,6 +22,9 @@
     <script>scripts\fade.gml</script>
     <script>scripts\start_game.gml</script>
     <script>scripts\goto_howto.gml</script>
+    <script>scripts\create_navbutton.gml</script>
+    <script>scripts\nav_pressed.gml</script>
+    <script>scripts\sprite_from_text.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\ftMain</font>
@@ -35,13 +38,14 @@
     <object>objects\objOption</object>
     <object>objects\objFade</object>
     <object>objects\objHowto</object>
+    <object>objects\objNavButton</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMenu</room>
-    <room>rooms\rmPlay</room>
     <room>rooms\rmHowto</room>
+    <room>rooms\rmPlay</room>
   </rooms>
-  <constants number="19">
+  <constants number="29">
     <constant name="TITLE_X">room_width / 2</constant>
     <constant name="TITLE_Y">room_height / 2.5</constant>
     <constant name="TITLE_SCALE">0.7</constant>
@@ -60,7 +64,17 @@
     <constant name="RETURN_TEXT">"Return"</constant>
     <constant name="HOWTO_BLURB0">"Swipe to move the monsters around."</constant>
     <constant name="HOWTO_BLURB1">"Move monsters to the numbered circles."</constant>
-    <constant name="HOWTO_BLURB2">"Make the numbers on the monsters add up to the numbers on the circles."</constant>
+    <constant name="HOWTO_BLURB2">"Make the numbers on the monsters add up#to the numbers on the circles."</constant>
+    <constant name="HOWTO_TITLE_SCALE">0.5</constant>
+    <constant name="HOWTO_BLURB_SCALE">0.3</constant>
+    <constant name="HOWTO_NAV_SCALE">0.2</constant>
+    <constant name="HOWTO_TITLE_X">room_width / 2</constant>
+    <constant name="HOWTO_TITLE_Y">room_height / 8</constant>
+    <constant name="HOWTO_BLURB_X">room_width / 2</constant>
+    <constant name="HOWTO_BLURB_Y">room_height / 2</constant>
+    <constant name="HOWTO_NAV_BACK_X">room_width / 8</constant>
+    <constant name="HOWTO_NAV_FWD_X">room_width - (room_width / 8)</constant>
+    <constant name="HOWTO_NAV_Y">room_height - (room_height / 8)</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

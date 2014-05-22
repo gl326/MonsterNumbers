@@ -25,9 +25,55 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>blurb = 0;
+blurbs[0] = HOWTO_BLURB0;
+blurbs[1] = HOWTO_BLURB1;
+blurbs[2] = HOWTO_BLURB2;
+
+back = create_navbutton(HOWTO_NAV_BACK_X, HOWTO_NAV_Y, id);
+forward = create_navbutton(HOWTO_NAV_FWD_X, HOWTO_NAV_Y, id);
+
+draw_set_font(ftBig);
+draw_set_color(c_black);
+back_sprite = sprite_from_text(BACK_TEXT, HOWTO_NAV_SCALE);
+forward_sprite = sprite_from_text(NEXT_TEXT, HOWTO_NAV_SCALE);
+return_sprite = sprite_from_text(RETURN_TEXT, HOWTO_NAV_SCALE);
+
+back.sprite_index = return_sprite;
+forward.sprite_index = forward_sprite;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>draw_set_font(ftBig);
 draw_set_color(c_black);
+draw_set_halign(fa_center);
+draw_set_valign(fa_center);
 
+draw_text_transformed(HOWTO_TITLE_X, HOWTO_TITLE_Y, HOWTO_OPTION_TEXT, HOWTO_TITLE_SCALE, HOWTO_TITLE_SCALE, 0);
+
+draw_text_transformed(HOWTO_BLURB_X, HOWTO_BLURB_Y, blurbs[blurb], HOWTO_BLURB_SCALE, HOWTO_BLURB_SCALE, 0);
+
+
+// draw orbs
 </string>
           </argument>
         </arguments>
