@@ -89,11 +89,13 @@ go_y = max(64,min(room_height-64,pen_y(my_pen)-(objController.pen_height/2)+rand
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if mouse_check_button_pressed(mb_left){
+            <string>
+if mouse_check_button_pressed(mb_left){
     if instance_nearest(mouse_x,mouse_y/*+(112*image_yscale)*/,objMonster)==id and point_distance(mouse_x,mouse_y/*+(112*image_yscale)*/,x,y)&lt;128{
         selected = 1;
         if !changing_pen and my_pen!=-1{objController.pen[my_pen]-=my_number;}
         my_pen=-1;
+        changing_pen = 0;
     }
 }
 if !mouse_check_button(mb_left) and selected{ //deselected...
@@ -120,7 +122,9 @@ x = go_x;
 y= go_y;
 if changing_pen{ //if we're arriving at a new pen...
     changing_pen = 0;
+    if my_pen!=-1{
     objController.pen[my_pen]+=my_number;
+    }
 }
 }
 
@@ -191,7 +195,10 @@ draw_sprite_ext(sprite_index,1,x,y-(64*abs(sin(max(0,win_anim)*pi))),image_xscal
 
 draw_set_halign(fa_center); draw_set_valign(fa_middle); draw_set_font(ftMain);
 draw_set_color(num_color);
-draw_text_transformed(x+lengthdir_x((sprite_height*.4),90+image_angle),y+lengthdir_y((sprite_height*.4),90+image_angle),string(my_number),sqrt(image_yscale),sqrt(image_yscale),image_angle);
+draw_text_transformed(
+x+lengthdir_x((sprite_height*.4)+(64*abs(sin(max(0,win_anim)*pi))),90+image_angle),
+y+lengthdir_y((sprite_height*.4)+(64*abs(sin(max(0,win_anim)*pi))),90+image_angle),
+string(my_number),sqrt(image_yscale),sqrt(image_yscale),image_angle);
 </string>
           </argument>
         </arguments>
