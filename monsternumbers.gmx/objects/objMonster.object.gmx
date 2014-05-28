@@ -93,6 +93,7 @@ go_y = max(64,min(room_height-64,pen_y(my_pen)-(objController.pen_height/2)+rand
 if mouse_check_button_pressed(mb_left){
     if instance_nearest(mouse_x,mouse_y/*+(112*image_yscale)*/,objMonster)==id and point_distance(mouse_x,mouse_y/*+(112*image_yscale)*/,x,y)&lt;128{
         selected = 1;
+        audio_play_sound(choose(monster01,monster02,monster03),true,0);
         if !changing_pen and my_pen!=-1{objController.pen[my_pen]-=my_number;}
         my_pen=-1;
         changing_pen = 0;
