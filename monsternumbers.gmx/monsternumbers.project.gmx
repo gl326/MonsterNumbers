@@ -46,6 +46,7 @@
     <object>objects\objFade</object>
     <object>objects\objHowto</object>
     <object>objects\objNavButton</object>
+    <object>objects\objAchievement</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMenu</room>

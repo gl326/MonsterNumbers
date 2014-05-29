@@ -30,6 +30,8 @@ play_pens = 2;
 
 level = 0;
 level_cleared = 0;
+globalvar levels_completed;
+global.levels_completed = 0;
 
 event_perform(ev_other,ev_user0);
 </string>
@@ -62,8 +64,13 @@ for (var i=0; i&lt;play_pens;i+=1){
 
 if won and !level_cleared{
     level_cleared = 1;
+    global.levels_completed +=1;
     audio_play_sound(choose(win01,win02,win03),true,0);
     instance_create(0,0,objFadeout);
+}
+
+if(global.levels_completed&gt;=3 &amp;&amp; global.levels_completed &lt; 4){
+    instance_create(320,0,objAchievement);
 }
 </string>
           </argument>
