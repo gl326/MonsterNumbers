@@ -42,6 +42,14 @@ selected=0;
 select_anim = 0;
 
 win_anim = -random(1);
+
+spr_list=ds_list_create();
+ds_list_add(spr_list,sprMonster);
+if (global.levels_completed&gt;=3){ds_list_add(spr_list,sprMonsterB);}
+if (global.levels_completed&gt;=6){ds_list_add(spr_list,sprMonsterC);}
+if (global.levels_completed&gt;=9){ds_list_add(spr_list,sprMonsterD);}
+sprite_index = ds_list_find_value(spr_list,floor(random(ds_list_size(spr_list))));
+ds_list_destroy(spr_list);
 </string>
           </argument>
         </arguments>

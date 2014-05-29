@@ -67,11 +67,11 @@ if won and !level_cleared{
     global.levels_completed +=1;
     audio_play_sound(choose(win01,win02,win03),true,0);
     instance_create(0,0,objFadeout);
+    if(global.levels_completed%3 == 0){
+        instance_create(320,0,objAchievement);
+    }
 }
 
-if(global.levels_completed&gt;=3 &amp;&amp; global.levels_completed &lt; 4){
-    instance_create(320,0,objAchievement);
-}
 </string>
           </argument>
         </arguments>
@@ -98,6 +98,7 @@ if(global.levels_completed&gt;=3 &amp;&amp; global.levels_completed &lt; 4){
 
 var num_mons = 3 + ceil(level/3) + floor(random(level/2.5)); //how many monsters?
 play_pens = min(4,2 + ceil(level/5));
+play_pens = 6;
 pen_width= ((room_width/2)/power(play_pens,1/3));
 pen_height = pen_width*room_height/room_width;
 
@@ -110,8 +111,8 @@ for(var i=0;i&lt;play_pens;i+=1){
 
 while(num_mons&gt;0){
     var mon = instance_create(0,0,objMonster);
-    mon.my_number = ceil((5+floor(level/2))*power(random(1),max(1,7-(level)))); //at higher levels, higher number mons become more common
-    if level&gt;4{
+    mon.my_number = ceil(((3*(1+((global.difficulty-1)/4)))+floor(level/2))*power(random(1),max(1,7-(level))));//*(1+((global.difficulty-1)/4)); //at higher levels, higher number mons become more common
+    if global.difficulty&gt;=3{
         if floor(random(3))==0{mon.my_number = -mon.my_number;}
         }
     var g=floor(random(play_pens));

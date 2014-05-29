@@ -33,6 +33,8 @@ howto_option = create_option(howto_x, OPTION_Y, HOWTO_OPTION_TEXT, id, howto_pre
 
 var quit_x = howto_x + OPTION_HGAP;
 quit_option = create_option(quit_x, OPTION_Y, QUIT_OPTION_TEXT, id, quit_pressed);
+
+global.difficulty = 1;
 </string>
           </argument>
         </arguments>
@@ -81,8 +83,56 @@ quit_option = create_option(quit_x, OPTION_Y, QUIT_OPTION_TEXT, id, quit_pressed
             <string>draw_set_font(ftBig);
 draw_set_color(c_black);
 draw_set_halign(fa_center);
-draw_set_valign(fa_center);
+draw_set_valign(fa_middle);
 draw_text_transformed(TITLE_X, TITLE_Y, TITLE_TEXT, TITLE_SCALE, TITLE_SCALE, 0); 
+
+draw_text_transformed(TITLE_X,display_get_gui_height()*7/8,"Difficulty#"+string(global.difficulty),1/5,1/5,0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="39">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.difficulty+=1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="37">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.difficulty-=1;
 </string>
           </argument>
         </arguments>

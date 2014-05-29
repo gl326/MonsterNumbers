@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-999999</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -72,8 +72,9 @@
           <argument>
             <kind>1</kind>
             <string>draw_set_color(c_black);
-draw_rectangle(0,0,200,50,true);
-draw_text_transformed(100,25, "3 Levels Completed!",.25,.25,0)
+draw_rectangle(room_width/4,0,room_width*3/4,50,true);
+draw_set_halign(fa_center);
+draw_text_transformed(room_width/2,25, string(global.levels_completed)+" Levels Completed!",.25,.25,0)
 </string>
           </argument>
         </arguments>
