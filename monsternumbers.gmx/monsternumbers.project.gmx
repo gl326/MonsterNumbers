@@ -3,7 +3,9 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\TweenGMS</extension>
+  </NewExtensions>
   <sounds name="sound">
     <sound>sound\win01</sound>
     <sound>sound\win02</sound>
@@ -35,6 +37,61 @@
     <script>scripts\create_navbutton.gml</script>
     <script>scripts\nav_pressed.gml</script>
     <script>scripts\sprite_from_text.gml</script>
+    <scripts name="Property Setters">
+      <script>scripts\x__.gml</script>
+      <script>scripts\x__int.gml</script>
+      <script>scripts\y__.gml</script>
+      <script>scripts\y__int.gml</script>
+      <script>scripts\speed__.gml</script>
+      <script>scripts\hspeed__.gml</script>
+      <script>scripts\vspeed__.gml</script>
+      <script>scripts\direction__.gml</script>
+      <script>scripts\depth__.gml</script>
+      <script>scripts\friction__.gml</script>
+      <script>scripts\gravity__.gml</script>
+      <script>scripts\gravity_direction__.gml</script>
+      <script>scripts\image_speed__.gml</script>
+      <script>scripts\image_index__.gml</script>
+      <script>scripts\image_alpha__.gml</script>
+      <script>scripts\image_angle__.gml</script>
+      <script>scripts\image_scale__.gml</script>
+      <script>scripts\image_xscale__.gml</script>
+      <script>scripts\image_yscale__.gml</script>
+      <script>scripts\example_property__.gml</script>
+    </scripts>
+    <scripts name="Ease Algorithms">
+      <script>scripts\EaseLinear.gml</script>
+      <script>scripts\EaseInQuad.gml</script>
+      <script>scripts\EaseOutQuad.gml</script>
+      <script>scripts\EaseInOutQuad.gml</script>
+      <script>scripts\EaseInCubic.gml</script>
+      <script>scripts\EaseOutCubic.gml</script>
+      <script>scripts\EaseInOutCubic.gml</script>
+      <script>scripts\EaseInQuart.gml</script>
+      <script>scripts\EaseOutQuart.gml</script>
+      <script>scripts\EaseInOutQuart.gml</script>
+      <script>scripts\EaseInQuint.gml</script>
+      <script>scripts\EaseOutQuint.gml</script>
+      <script>scripts\EaseInOutQuint.gml</script>
+      <script>scripts\EaseInSine.gml</script>
+      <script>scripts\EaseOutSine.gml</script>
+      <script>scripts\EaseInOutSine.gml</script>
+      <script>scripts\EaseInCirc.gml</script>
+      <script>scripts\EaseOutCirc.gml</script>
+      <script>scripts\EaseInOutCirc.gml</script>
+      <script>scripts\EaseInExpo.gml</script>
+      <script>scripts\EaseOutExpo.gml</script>
+      <script>scripts\EaseInOutExpo.gml</script>
+      <script>scripts\EaseInBack.gml</script>
+      <script>scripts\EaseOutBack.gml</script>
+      <script>scripts\EaseInOutBack.gml</script>
+      <script>scripts\EaseInBounce.gml</script>
+      <script>scripts\EaseOutBounce.gml</script>
+      <script>scripts\EaseInOutBounce.gml</script>
+      <script>scripts\EaseInElastic.gml</script>
+      <script>scripts\EaseOutElastic.gml</script>
+      <script>scripts\EaseInOutElastic.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\ftMain</font>
@@ -50,6 +107,8 @@
     <object>objects\objHowto</object>
     <object>objects\objNavButton</object>
     <object>objects\objAchievement</object>
+    <object>objects\objCrowd</object>
+    <object>objects\shared_Tweener</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMenu</room>

@@ -1,0 +1,1 @@
+depth = floor(argument0);
