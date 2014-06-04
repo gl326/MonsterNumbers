@@ -20,6 +20,7 @@
     <sprite>sprites\sprMonsterB</sprite>
     <sprite>sprites\sprMonsterC</sprite>
     <sprite>sprites\sprMonsterD</sprite>
+    <sprite>sprites\sprCursor</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -109,6 +110,7 @@
     <object>objects\objAchievement</object>
     <object>objects\objCrowd</object>
     <object>objects\shared_Tweener</object>
+    <object>objects\objPointer</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMenu</room>

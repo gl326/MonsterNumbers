@@ -98,7 +98,6 @@ if won and !level_cleared{
 
 var num_mons = 3 + ceil(level/3) + floor(random(level/2.5)); //how many monsters?
 play_pens = min(4,2 + ceil(level/5));
-play_pens = 6;
 pen_width= ((room_width/2)/power(play_pens,1/3));
 pen_height = pen_width*room_height/room_width;
 
