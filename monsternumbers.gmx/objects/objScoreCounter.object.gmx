@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>/// Create Sprites
 draw_set_font(ftBig);
+draw_set_color(c_black);
 sprite_index = sprite_from_text(string(global.levels_completed - 1), 1.5);
 next_sprite = sprite_from_text(string(global.levels_completed ), 1.5);
 </string>
