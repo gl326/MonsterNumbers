@@ -25,13 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Set Initial State
-
-// 0 - rise
-// 1 - waggle
-// 2 - fall
-
-state = 0;
+            <string>/// Set Globals
+global.difficulty = 1;
 </string>
           </argument>
         </arguments>
@@ -52,32 +47,50 @@ state = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create Tweens
-tween_rise = TweenCreate(id, true);
-tween_waggle = TweenCreate(id, true);
-tween_fall = TweenCreate(id, true);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Begin Rise
-TweenPlayOnce(tween_rise, y__, y, y - room_height, 0.3, EaseLinear);
+            <string>in_place = false;
+
+var title_x = room_width / 2;
+var title_y_begin = -50;
+var title_y_end = room_height / 2.5;
+
+var button_x = room_width / 2;
+var button_y_begin = room_height + 100;
+var button_scale = 0.3;
+var button_vgap = 50;
+
+var start_button_y_end = title_y_end + 100;
+var howto_button_y_end = start_button_y_end + button_vgap;
+var quit_button_y_end = howto_button_y_end + button_vgap;
+
+// create title
+draw_set_font(ftBig);
+sprite_index = sprite_from_text("Monster Numbers", 0.7);
+x = title_x;
+y = title_y_begin;
+
+// create buttons
+var start_button_sprite = sprite_from_text("Start", button_scale);
+start_button = create_button(button_x, button_y_begin, start_button_sprite); 
+
+var howto_button_sprite = sprite_from_text("How to Play", button_scale);
+howto_button = create_button(button_x, button_y_begin, howto_button_sprite);
+
+var quit_button_sprite = sprite_from_text("Quit", button_scale);
+quit_button = create_button(button_x, button_y_begin, quit_button_sprite);
+
+// bring ui into view
+var tween_title = TweenCreate(id, true);
+TweenPlayOnce(tween_title, y__, title_y_begin, title_y_end, 0.7, EaseOutBack);
+
+var tween_start_button = TweenCreate(start_button, true);
+TweenPlayOnceDelay(tween_start_button, y__, button_y_begin, start_button_y_end, 0.7, EaseOutBack, 0.5);
+
+var tween_howto_button = TweenCreate(howto_button, true);
+TweenPlayOnceDelay(tween_howto_button, y__, button_y_begin, howto_button_y_end, 0.7, EaseOutBack, 1.0);
+
+var tween_quit_button = TweenCreate(quit_button, true);
+TweenOnFinishAdd(tween_quit_button, id, menu_activate);
+TweenPlayOnceDelay(tween_quit_button, y__, button_y_begin, quit_button_y_end, 0.7, EaseOutBack, 1.5);
 </string>
           </argument>
         </arguments>
@@ -100,32 +113,20 @@ TweenPlayOnce(tween_rise, y__, y, y - room_height, 0.3, EaseLinear);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (state == 0) {
-    if (!TweenIsActive(tween_rise)) {
-        elapsed = 0;
-        duration = 2.0;
-        if (sprite_index == sprCrowdBack) {
-            frequency = 0.08;
-        }
-        else {
-            frequency = 0.1;
-        }
-        TweenPlayPatrol(tween_waggle, y__, y, y - 50, frequency, EaseLinear);
-        state = 1;
-    }
+            <string>if (start_button.pressed)
+{
+    start_button.active = false;
+    howto_button.active = false;
+    quit_button.active = false;
+    fade_out(c_white, 0.7, id, start_game);
 }
-else if (state == 1) {
-    elapsed += (1.0 / room_speed);
-    if (elapsed &gt; duration) {
-        TweenStop(tween_waggle);
-        TweenPlayOnce(tween_fall, y__, y, room_height, 0.3, EaseLinear);
-        state = 2;
-    }
+if (howto_button.pressed)
+{
+
 }
-else if (state == 2) {
-    if (!TweenIsActive(tween_fall)) {
-        instance_destroy();
-    }
+if (quit_button.pressed)
+{
+    game_end();
 }
 </string>
           </argument>
@@ -144,8 +145,5 @@ else if (state == 2) {
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints>
-    <point>0,0</point>
-    <point>360,360</point>
-  </PhysicsShapePoints>
+  <PhysicsShapePoints/>
 </object>

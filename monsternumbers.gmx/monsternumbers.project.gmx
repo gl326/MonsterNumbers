@@ -21,6 +21,8 @@
     <sprite>sprites\sprMonsterC</sprite>
     <sprite>sprites\sprMonsterD</sprite>
     <sprite>sprites\sprCursor</sprite>
+    <sprite>sprites\sprCrowdBack</sprite>
+    <sprite>sprites\sprCrowdFront</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -32,7 +34,6 @@
     <script>scripts\howto_pressed.gml</script>
     <script>scripts\quit_pressed.gml</script>
     <script>scripts\option_pressed.gml</script>
-    <script>scripts\fade.gml</script>
     <script>scripts\start_game.gml</script>
     <script>scripts\goto_howto.gml</script>
     <script>scripts\create_navbutton.gml</script>
@@ -93,6 +94,12 @@
       <script>scripts\EaseOutElastic.gml</script>
       <script>scripts\EaseInOutElastic.gml</script>
     </scripts>
+    <script>scripts\fade.gml</script>
+    <script>scripts\fade_in.gml</script>
+    <script>scripts\fade_out.gml</script>
+    <script>scripts\menu_activate.gml</script>
+    <script>scripts\create_button.gml</script>
+    <script>scripts\create_crowd.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\ftMain</font>
@@ -104,15 +111,19 @@
     <object>objects\objFadeout</object>
     <object>objects\objMenu</object>
     <object>objects\objOption</object>
-    <object>objects\objFade</object>
     <object>objects\objHowto</object>
     <object>objects\objNavButton</object>
     <object>objects\objAchievement</object>
-    <object>objects\objCrowd</object>
     <object>objects\shared_Tweener</object>
     <object>objects\objPointer</object>
+    <object>objects\objButton</object>
+    <object>objects\objCrowd</object>
+    <object>objects\objFade</object>
+    <object>objects\objMainMenu</object>
+    <object>objects\objScoreCounter</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rmMainMenu</room>
     <room>rooms\rmMenu</room>
     <room>rooms\rmHowto</room>
     <room>rooms\rmPlay</room>

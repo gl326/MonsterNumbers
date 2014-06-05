@@ -25,13 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Set Initial State
-
-// 0 - rise
-// 1 - waggle
-// 2 - fall
-
-state = 0;
+            <string>/// Create Sprites
+draw_set_font(ftBig);
+sprite_index = sprite_from_text(string(global.levels_completed - 1), 1.0);
+next_sprite = sprite_from_text(string(global.levels_completed ), 1.0);
 </string>
           </argument>
         </arguments>
@@ -52,38 +49,15 @@ state = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create Tweens
-tween_rise = TweenCreate(id, true);
-tween_waggle = TweenCreate(id, true);
-tween_fall = TweenCreate(id, true);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Begin Rise
-TweenPlayOnce(tween_rise, y__, y, y - room_height, 0.3, EaseLinear);
+            <string>/// Set Alarms
+alarm[0] = 1 * room_speed;
+alarm[1] = 2 * room_speed;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="1" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -100,33 +74,57 @@ TweenPlayOnce(tween_rise, y__, y, y - room_height, 0.3, EaseLinear);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (state == 0) {
-    if (!TweenIsActive(tween_rise)) {
-        elapsed = 0;
-        duration = 2.0;
-        if (sprite_index == sprCrowdBack) {
-            frequency = 0.08;
-        }
-        else {
-            frequency = 0.1;
-        }
-        TweenPlayPatrol(tween_waggle, y__, y, y - 50, frequency, EaseLinear);
-        state = 1;
-    }
-}
-else if (state == 1) {
-    elapsed += (1.0 / room_speed);
-    if (elapsed &gt; duration) {
-        TweenStop(tween_waggle);
-        TweenPlayOnce(tween_fall, y__, y, room_height, 0.3, EaseLinear);
-        state = 2;
-    }
-}
-else if (state == 2) {
-    if (!TweenIsActive(tween_fall)) {
-        instance_destroy();
-    }
-}
+            <string>sprite_delete(sprite_index);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Goodbye!
+instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Swap Sprite
+var tmp = sprite_index;
+sprite_index = next_sprite;
+sprite_delete(tmp);
 </string>
           </argument>
         </arguments>
@@ -144,8 +142,5 @@ else if (state == 2) {
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints>
-    <point>0,0</point>
-    <point>360,360</point>
-  </PhysicsShapePoints>
+  <PhysicsShapePoints/>
 </object>
