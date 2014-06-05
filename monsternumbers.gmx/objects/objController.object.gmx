@@ -58,6 +58,7 @@ event_perform(ev_other,ev_user0);
             <kind>1</kind>
             <string>///win condition
 var won = 1;
+
 for (var i=0; i&lt;play_pens;i+=1){
     if goal[i]!=pen[i]{won = 0; break;}
 }
@@ -168,6 +169,15 @@ for (var i=0;i&lt;play_pens;i+=1){
     }
     draw_primitive_end();
     
+    draw_set_color(c_yellow);
+    if goal[i]=pen[i]{
+        draw_ellipse(pen_x(i)-((w+10)/2),
+        pen_y(i)-((h+10)/2),
+        pen_x(i)+((w+10)/2),
+        pen_y(i)+((h+10)/2),false);
+    }
+  
+    draw_set_color(grass_color);
     draw_ellipse(pen_x(i)-(w/2),
         pen_y(i)-(h/2),
         pen_x(i)+(w/2),
