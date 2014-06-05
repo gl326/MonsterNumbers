@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1003</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>/// Create Sprites
 draw_set_font(ftBig);
-sprite_index = sprite_from_text(string(global.levels_completed - 1), 1.0);
-next_sprite = sprite_from_text(string(global.levels_completed ), 1.0);
+sprite_index = sprite_from_text(string(global.levels_completed - 1), 1.5);
+next_sprite = sprite_from_text(string(global.levels_completed ), 1.5);
 </string>
           </argument>
         </arguments>

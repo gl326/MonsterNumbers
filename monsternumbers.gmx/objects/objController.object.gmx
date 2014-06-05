@@ -66,6 +66,8 @@ if won and !level_cleared{
     level_cleared = 1;
     global.levels_completed +=1;
     audio_play_sound(choose(win01,win02,win03),true,0);
+    create_crowd();
+    instance_create(room_width / 2, room_height / 2, objScoreCounter);
     instance_create(0,0,objFadeout);
     if(global.levels_completed%3 == 0){
         instance_create(320,0,objAchievement);
