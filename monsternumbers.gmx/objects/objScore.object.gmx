@@ -25,23 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var start_x = OPTION_HGAP;
-start_option = create_option(start_x/2, OPTION_Y, START_OPTION_TEXT, id, start_pressed);
-time_option = create_option(start_x*3/2, OPTION_Y, "Time Trials", id, time_pressed);
-
-var howto_x = start_x + OPTION_HGAP;
-howto_option = create_option(howto_x, OPTION_Y, HOWTO_OPTION_TEXT, id, howto_pressed);
-
-var quit_x = howto_x + OPTION_HGAP;
-quit_option = create_option(quit_x, OPTION_Y, QUIT_OPTION_TEXT, id, quit_pressed);
-
-global.difficulty = 1;
+            <string>active=false;
+alarm[0]= 15;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="1" enumb="0">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -58,13 +49,38 @@ global.difficulty = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sprite_delete(sprite_index);
+            <string>active=true;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if active{
+room_goto(rmMainMenu);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -82,58 +98,7 @@ global.difficulty = 1;
           <argument>
             <kind>1</kind>
             <string>draw_set_font(ftBig);
-draw_set_color(c_black);
-draw_set_halign(fa_center);
-draw_set_valign(fa_middle);
-draw_text_transformed(TITLE_X, TITLE_Y, TITLE_TEXT, TITLE_SCALE, TITLE_SCALE, 0); 
-
-draw_text_transformed(TITLE_X,display_get_gui_height()*7/8,"Difficulty#"+string(global.difficulty),1/5,1/5,0);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="39">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.difficulty+=1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="37">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.difficulty-=1;
+draw_text_transformed(room_width/2,room_height/2,"GAME OVER#CLEARED: "+string(global.levels_completed)+"#click to continue",.5,.5,0);
 </string>
           </argument>
         </arguments>

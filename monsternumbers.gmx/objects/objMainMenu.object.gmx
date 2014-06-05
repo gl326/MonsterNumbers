@@ -27,6 +27,9 @@
             <kind>1</kind>
             <string>/// Set Globals
 global.difficulty = 1;
+global.mode = 0;
+global.time_max = 2*60; //2 minutes
+global.time = global.time_max;
 </string>
           </argument>
         </arguments>
@@ -69,8 +72,13 @@ x = title_x;
 y = title_y_begin;
 
 // create buttons
-var start_button_sprite = sprite_from_text("Start", button_scale);
-start_button = create_button(button_x, button_y_begin, start_button_sprite); 
+var start_button_sprite = sprite_from_text("Free", button_scale);
+start_button = create_button(button_x/2, button_y_begin, start_button_sprite); 
+var time_button_sprite = sprite_from_text("Timed", button_scale);
+time_button = create_button(button_x*3/2, button_y_begin, time_button_sprite); 
+
+var filler_sprite = sprite_from_text("|", button_scale);
+filler_button = create_button(button_x, button_y_begin, filler_sprite); 
 
 var howto_button_sprite = sprite_from_text("How to Play", button_scale);
 howto_button = create_button(button_x, button_y_begin, howto_button_sprite);
@@ -84,6 +92,10 @@ TweenPlayOnce(tween_title, y__, title_y_begin, title_y_end, 0.7, EaseOutBack);
 
 var tween_start_button = TweenCreate(start_button, true);
 TweenPlayOnceDelay(tween_start_button, y__, button_y_begin, start_button_y_end, 0.7, EaseOutBack, 0.5);
+var tween_filler_button = TweenCreate(filler_button, true);
+TweenPlayOnceDelay(tween_filler_button, y__, button_y_begin, start_button_y_end, 0.7, EaseOutBack, 0.5);
+var tween_time_button = TweenCreate(time_button, true);
+TweenPlayOnceDelay(tween_time_button, y__, button_y_begin, start_button_y_end, 0.7, EaseOutBack, 0.5);
 
 var tween_howto_button = TweenCreate(howto_button, true);
 TweenPlayOnceDelay(tween_howto_button, y__, button_y_begin, howto_button_y_end, 0.7, EaseOutBack, 1.0);
@@ -118,6 +130,16 @@ TweenPlayOnceDelay(tween_quit_button, y__, button_y_begin, quit_button_y_end, 0.
     start_button.active = false;
     howto_button.active = false;
     quit_button.active = false;
+    global.mode = 0;
+    fade_out(c_white, 0.7, id, start_game);
+}
+if (time_button.pressed)
+{
+    start_button.active = false;
+    howto_button.active = false;
+    quit_button.active = false;
+    global.mode = 1;
+    global.time = global.time_max;
     fade_out(c_white, 0.7, id, start_game);
 }
 if (howto_button.pressed)

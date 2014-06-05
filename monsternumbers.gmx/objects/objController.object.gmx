@@ -75,6 +75,10 @@ if won and !level_cleared{
     }
 }
 
+if global.mode{
+    global.time -= (1/room_speed);
+    if global.time&lt;=0{room_goto(rmScore);}
+}
 </string>
           </argument>
         </arguments>
@@ -157,6 +161,12 @@ while(num_mons&gt;0){
           <argument>
             <kind>1</kind>
             <string>var w = pen_width, h = pen_height;//, dist = room_width/sqrt(play_pens);
+
+if global.mode{
+draw_set_color(grass_color); draw_set_valign(fa_top);
+draw_text(room_width/2,8,string(ceil(global.time)));
+draw_set_valign(fa_middle);
+}
 
 for (var i=0;i&lt;play_pens;i+=1){
     draw_set_color(grass_color);

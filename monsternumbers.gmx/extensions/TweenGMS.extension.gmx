@@ -19,17 +19,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
   <description>Tweening Engine</description>
   <helpfile></helpfile>
   <installdir></installdir>
-  <classname></classname>
-  <androidclassname></androidclassname>
-  <sourcedir></sourcedir>
-  <androidsourcedir></androidsourcedir>
-  <macsourcedir></macsourcedir>
-  <maclinkerflags></maclinkerflags>
-  <androidinject></androidinject>
-  <iosSystemFrameworks/>
-  <iosThirdPartyFrameworks/>
-  <androidPermissions/>
-  <IncludedResources/>
   <files>
     <file>
       <filename>TweenGMS.gml</filename>

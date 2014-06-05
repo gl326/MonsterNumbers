@@ -73,8 +73,8 @@ ds_list_destroy(spr_list);
           <argument>
             <kind>1</kind>
             <string>alarm[0]=(room_speed*3) + random(room_speed*5);
-go_x = max(64,min(room_width-64,pen_x(my_pen)-(objController.pen_width/2)+random(objController.pen_width)));
-go_y = max(64,min(room_height-64,pen_y(my_pen)-(objController.pen_height/2)+random(objController.pen_height)));
+go_x = max(64,min(room_width-64,pen_x(my_pen)-(objController.pen_width/2*.9)+random(objController.pen_width*.8)));
+go_y = max(64,min(room_height-64,pen_y(my_pen)-(objController.pen_height/2*.9)+random(objController.pen_height*.8)));
 </string>
           </argument>
         </arguments>
@@ -182,6 +182,12 @@ select_anim+=(selected-select_anim)*.3; //select animation
             <kind>1</kind>
             <string>image_xscale = ((room_width/objController.play_pens)/256)/2*sign(image_xscale)*(1+(.25*select_anim));
 image_yscale = (((room_width/objController.play_pens)/256)/2)*(1+(abs(wiggle-round(wiggle))/3))*(1+(.25*select_anim));
+
+if selected{
+    draw_set_color(c_yellow);
+    draw_dotted_line(x,y,mouse_x,mouse_y,6,24);
+}   
+
 
 draw_set_blend_mode(bm_subtract);
 draw_ellipse_color(x-(112*image_xscale),y-(72*image_yscale),

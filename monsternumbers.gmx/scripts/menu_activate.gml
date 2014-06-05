@@ -2,3 +2,4 @@
 start_button.active = true;
 howto_button.active = true;
 quit_button.active = true;
+time_button.active = true;
