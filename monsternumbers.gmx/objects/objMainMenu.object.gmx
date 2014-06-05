@@ -25,31 +25,6 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Set Globals
-global.difficulty = 1;
-global.mode = 0;
-global.time_max = 2*60; //2 minutes
-global.time = global.time_max;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>in_place = false;
 
 var title_x = room_width / 2;
@@ -140,6 +115,7 @@ if (time_button.pressed)
     quit_button.active = false;
     global.mode = 1;
     global.time = global.time_max;
+    global.level_offset = global.levels_completed;
     fade_out(c_white, 0.7, id, start_game);
 }
 if (howto_button.pressed)
@@ -150,6 +126,69 @@ if (quit_button.pressed)
 {
     game_end();
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set Globals
+global.difficulty = 4;
+global.mode = 0;
+global.time_max = 1*60; //2 minutes
+global.time = global.time_max;
+
+global.cleared_offset = 0;
+global.levels_completed = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>spr[0] = sprMonster;
+spr[1] = sprMonsterB;
+spr[2] = sprMonsterC;
+spr[3] = sprMonsterD;
+
+for(var i=0;i&lt;4;i+=1){
+if global.levels_completed &gt;= (i*3){draw_sprite_ext(spr[i],0,(room_width/2)+(((i-(1.5))/1.5)*(room_width*1/4)),room_height/3,.5,.5,0,c_white,1);}
+else{draw_sprite_color(spr[i],0,(room_width/2)+(((i-(1.5))/1.5)*(room_width*1/4)),room_height/3,.5,.5,0,c_dkgray,1);}
+}
+
+draw_self();
 </string>
           </argument>
         </arguments>

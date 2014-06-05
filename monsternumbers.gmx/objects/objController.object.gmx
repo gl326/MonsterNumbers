@@ -29,11 +29,12 @@
 play_pens = 2;
 
 level = 0;
+if !global.mode{level = global.levels_completed;}
 level_cleared = 0;
-globalvar levels_completed;
-global.levels_completed = 0;
 
 event_perform(ev_other,ev_user0);
+
+time_draw = global.time;
 </string>
           </argument>
         </arguments>
@@ -73,12 +74,16 @@ if won and !level_cleared{
     if(global.levels_completed%3 == 0){
         instance_create(320,0,objAchievement);
     }
+    
+    global.time += max(3,ceil(instance_number(objMonster)));
 }
 
-if global.mode{
+if global.mode and !level_cleared{
     global.time -= (1/room_speed);
     if global.time&lt;=0{room_goto(rmScore);}
 }
+
+time_draw += (global.time-time_draw)*.1;
 </string>
           </argument>
         </arguments>
@@ -104,7 +109,7 @@ if global.mode{
             <string>///start new level
 
 var num_mons = 3 + ceil(level/3) + floor(random(level/2.5)); //how many monsters?
-play_pens = min(4,2 + ceil(level/5));
+play_pens = min(6,2 + ceil(level/5));
 pen_width= ((room_width/2)/power(play_pens,1/3));
 pen_height = pen_width*room_height/room_width;
 
@@ -143,6 +148,37 @@ while(num_mons&gt;0){
         </arguments>
       </action>
     </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if global.mode{
+var w = display_get_gui_width();
+draw_set_color(grass_color); 
+var rad = 32;
+draw_pie((w/2)-(rad),0,(w/2)+(rad),rad*2,(w/2),0,(w/2)+lengthdir_x(rad,90+(360*frac(global.time))),rad+lengthdir_y(rad,90+(360*frac(global.time))),false,24);
+
+draw_set_color(c_black);
+draw_text_transformed(w/2,rad,string(ceil(time_draw)),.5+(sqr(frac(global.time)/2)),.5+(sqr(frac(global.time))/2),0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -162,12 +198,6 @@ while(num_mons&gt;0){
             <kind>1</kind>
             <string>var w = pen_width, h = pen_height;//, dist = room_width/sqrt(play_pens);
 
-if global.mode{
-draw_set_color(grass_color); draw_set_valign(fa_top);
-draw_text(room_width/2,8,string(ceil(global.time)));
-draw_set_valign(fa_middle);
-}
-
 for (var i=0;i&lt;play_pens;i+=1){
     draw_set_color(grass_color);
     draw_primitive_begin(pr_trianglestrip);
@@ -179,13 +209,13 @@ for (var i=0;i&lt;play_pens;i+=1){
     }
     draw_primitive_end();
     
-    draw_set_color(c_yellow);
+    /*draw_set_color(c_yellow);
     if goal[i]=pen[i]{
         draw_ellipse(pen_x(i)-((w+10)/2),
         pen_y(i)-((h+10)/2),
         pen_x(i)+((w+10)/2),
         pen_y(i)+((h+10)/2),false);
-    }
+    }*/
   
     draw_set_color(grass_color);
     draw_ellipse(pen_x(i)-(w/2),
@@ -225,6 +255,29 @@ draw_sprite_ext(sprPaintbg,0,room_width/2,room_height/2,
           <argument>
             <kind>1</kind>
             <string>play_pens+=1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>room_goto(rmMainMenu);
 </string>
           </argument>
         </arguments>

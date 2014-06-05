@@ -184,8 +184,8 @@ select_anim+=(selected-select_anim)*.3; //select animation
 image_yscale = (((room_width/objController.play_pens)/256)/2)*(1+(abs(wiggle-round(wiggle))/3))*(1+(.25*select_anim));
 
 if selected{
-    draw_set_color(c_yellow);
-    draw_dotted_line(x,y,mouse_x,mouse_y,6,24);
+    draw_set_color(c_black);
+    draw_dotted_line(x,y,mouse_x,mouse_y,8,24);
 }   
 
 

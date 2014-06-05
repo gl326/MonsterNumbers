@@ -98,7 +98,7 @@ room_goto(rmMainMenu);
           <argument>
             <kind>1</kind>
             <string>draw_set_font(ftBig);
-draw_text_transformed(room_width/2,room_height/2,"GAME OVER#CLEARED: "+string(global.levels_completed)+"#click to continue",.5,.5,0);
+draw_text_transformed(room_width/2,room_height/2,"GAME OVER#CLEARED: "+string(global.levels_completed-global.level_offset)+"#click to continue",.5,.5,0);
 </string>
           </argument>
         </arguments>
