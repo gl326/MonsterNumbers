@@ -73,6 +73,8 @@ alarm[0]= 15;
           <argument>
             <kind>1</kind>
             <string>if active{
+global.max_levels_completed = global.levels_completed;
+global.levels_completed = 0;
 room_goto(rmMainMenu);
 }
 </string>

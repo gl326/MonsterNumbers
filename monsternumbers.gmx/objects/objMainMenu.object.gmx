@@ -156,6 +156,7 @@ global.time = global.time_max;
 
 global.cleared_offset = 0;
 global.levels_completed = 0;
+global.max_levels_completed = 0;
 </string>
           </argument>
         </arguments>
@@ -184,7 +185,7 @@ spr[2] = sprMonsterC;
 spr[3] = sprMonsterD;
 
 for(var i=0;i&lt;4;i+=1){
-if global.levels_completed &gt;= (i*3){draw_sprite_ext(spr[i],0,(room_width/2)+(((i-(1.5))/1.5)*(room_width*1/4)),room_height/3,.5,.5,0,c_white,1);}
+if global.max_levels_completed &gt;= (i*3){draw_sprite_ext(spr[i],0,(room_width/2)+(((i-(1.5))/1.5)*(room_width*1/4)),room_height/3,.5,.5,0,c_white,1);}
 else{draw_sprite_color(spr[i],0,(room_width/2)+(((i-(1.5))/1.5)*(room_width*1/4)),room_height/3,.5,.5,0,c_dkgray,1);}
 }
 

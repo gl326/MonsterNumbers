@@ -51,8 +51,8 @@ next_sprite = sprite_from_text(string(global.levels_completed ), 1.5);
           <argument>
             <kind>1</kind>
             <string>/// Set Alarms
-alarm[0] = 1 * room_speed;
-alarm[1] = 2 * room_speed;
+alarm[0] = 1.2 * room_speed;
+alarm[1] = 2.5 * room_speed;
 </string>
           </argument>
         </arguments>
